@@ -8,9 +8,11 @@ models/course.js
 
 const { Model, DataTypes } = require('sequelize');
 
+
 module.exports = (sequelize) => {
    class Course extends Model { };
 
+   // Initialize Models
    Course.init(
       { // Attributes
          title: {
@@ -31,6 +33,17 @@ module.exports = (sequelize) => {
          sequelize,
       }
    );
+
+   // Define Associations
+   Course.associate = (models) => {
+      Course.belongsTo(models.User, {
+         as: 'student', // alias
+         foreignKey: {
+            fieldName: 'userId',
+            allowNull: false,
+         },
+      });
+   };
 
    return Course;
 };

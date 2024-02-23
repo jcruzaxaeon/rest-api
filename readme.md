@@ -28,7 +28,9 @@
 ## Devlog
 
 ### Commit Log
-- [ ] define models
+- [ ] create route: api/users, GET, 200;
+- [x] define associations
+- [x] initialize models
 - [x] test db connection
 - [x] run starter project
 - [x] update readme
@@ -141,6 +143,18 @@ module.exports = (sequelize) => {
    return User;
 };
 ```
+
+
+
+### Define Associations
+```javascript
+
+```
+
+
+
+
+
 
 
 ---
