@@ -27,6 +27,13 @@
 ----------------------------------------------------------------------------------------------------
 ## Devlog
 
+### Commit Log
+- [ ] define models
+- [x] test db connection
+- [x] run starter project
+- [x] update readme
+- [x] commit-0
+
 ### Setup `Sequelize`
 1. Install
    ```s
@@ -36,15 +43,16 @@
    $ npx sequelize init  #Initialize project DB
    ```
 1. Update Configuration
+   - Add/modify `storage`, `dialect` keys
    - `config.js`:
-      ```json
-      {
-         "development": {
-            "storage": "fsjstd-restapi.db",
-            "dialect": "sqlite"
-         },
-      }
-      ```
+   ```json
+   {
+      "development": {
+         "storage": "fsjstd-restapi.db",
+         "dialect": "sqlite"
+      },
+   }
+   ```
 1. Test DB Connection
    ```javascript
    // app.js
@@ -70,6 +78,72 @@
 
 
 
+----------------------------------------------------------------------------------------------------
+### Dev Notes
+- "When defining models for an existing database the model names and attributes need to match the tables in the database exactly otherwise Sequelize will throw an error." -Team Treehouse
+
+#### Define Model (Skeleton)
+```javascript
+/* 
+
+models/example.js
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+'use strict';
+
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+
+module.exports = (sequelize) => {
+   class Example extends Model {};
+   // Example.init(attibutes, options);
+   Example.init({/* Attibutes */}, { sequelize });
+   return Example;
+};
+```
+
+#### Define Model (Basic)
+```javascript
+/*
+
+models/user.js
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+'use strict';
+
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+
+module.exports = (sequelize) => {
+   class User extends Model { };
+
+   User.init(
+      { // Attributes
+         firstName: {
+            type: DataTypes.STRING,
+         },
+         lastName: {
+            type: DataTypes.STRING,
+         },
+         emailAddress: {
+            type: DataTypes.STRING,
+         },
+         password: {
+            type: DataTypes.STRING,
+         },
+
+      },
+      { // Options
+         sequelize,
+      }
+   );
+
+   return User;
+};
+```
+
+
+---
 1. Define Models
    ```javascript
    import { Sequelize, DataTypes } from 'sequelize';
