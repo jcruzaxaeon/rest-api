@@ -28,7 +28,7 @@
 ## Devlog
 
 ### Commit Log
-- [ ] create route: api/users, GET, 200;
+- [ ] create get-users route: api/users, GET, 200
 - [x] define associations
 - [x] initialize models
 - [x] test db connection
