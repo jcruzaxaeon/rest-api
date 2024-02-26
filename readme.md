@@ -28,13 +28,21 @@
 ## Devlog
 
 ### Commit Log
-- [ ] create get-users route: api/users, GET, 200
+- [ ] add, test auth middleware. add route: api/users, POST, 201.
+- [x] add route: api/users, GET, 200
 - [x] define associations
 - [x] initialize models
 - [x] test db connection
 - [x] run starter project
 - [x] update readme
 - [x] commit-0
+
+### Initialize Project
+```s
+$ npm i
+$ npm run seed #Run again to re-initialize a DB
+$ npm start
+```
 
 ### Setup `Sequelize`
 1. Install
