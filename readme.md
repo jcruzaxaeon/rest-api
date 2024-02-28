@@ -28,7 +28,8 @@
 ## Devlog
 
 ### Commit Log
-- [ ] add, test auth middleware. add route: api/users, POST, 201.
+- [ ] add route: api/courses, GET, 200 (include course-user)
+- [x] add, test auth middleware. add route: api/users, POST, 201.
 - [x] add route: api/users, GET, 200
 - [x] define associations
 - [x] initialize models
