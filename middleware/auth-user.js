@@ -30,7 +30,6 @@ exports.authenticateUser = async (req, res, next) => {
 
          // Valid Pass?
          if (authenticated) {
-            console.log(`${user.firstName} ${user.lastName} Signed In`);
             req.currentUser = user;
          } else { msg = 'Authentication failure' }
       } else { msg = 'Username not found' }

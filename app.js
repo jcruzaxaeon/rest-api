@@ -34,13 +34,23 @@ app.use((req, res) => {
 
 // setup a global error handler
 app.use((err, req, res, next) => {
+   let errors = [];
+   
    if (enableGlobalErrorLogging) {
       console.error(`Global error handler: ${JSON.stringify(err.stack)}`);
    }
 
+   if (err.name === 'SequelizeValidationError' || err.name === 'SequelizeUniqueConstraintError') {
+      errors = err.errors.map(e => e.message);
+      // console.log(errors);
+      // res.status(400).json({ errors });
+      err.status = 400;
+   }
+
+
    res.status(err.status || 500).json({
-      message: err.message,
-      error: {},
+      msg: err.message,
+      errors: err.errs,
    });
 });
 
