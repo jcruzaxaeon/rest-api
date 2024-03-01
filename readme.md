@@ -28,6 +28,8 @@
 ## Devlog
 
 ### Commit Log
+- [x] filter response data: api/courses/:id
+- [x] refactor-0
 - [x] add advanced validation
 - [x] add validation to db models.
 - [x] add, test auth middleware. add route: api/users, POST, 201.

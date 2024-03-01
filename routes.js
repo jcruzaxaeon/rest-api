@@ -83,6 +83,7 @@ router.get('/courses', asyncTryBox(async (req, res) => {
 router.get('/courses/:id', asyncTryBox(async (req, res) => {
    const id = req.params.id;
    const course = await Course.findByPk(id, {
+      attributes: ['id', 'title', 'description', 'estimatedTime', 'materialsNeeded', 'userId'],
       include: [{
          model: User,
          as: 'student',
@@ -151,7 +152,8 @@ router.put('/courses/:id', authenticateUser, asyncTryBox(async (req, res) => {
    res.status(204).send();
 }));
 
-// ## DELETE, 204 - Deleted, api/courses/:id
+// ## DELETE COURSE
+// - 204 - Deleted, api/courses/:id
 // - Delete an existing course
 router.delete('/courses/:id', authenticateUser, asyncTryBox(async (req, res) => {
    const user = req.currentUser.dataValues;
