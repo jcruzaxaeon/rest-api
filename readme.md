@@ -41,6 +41,9 @@
 - [x] update readme
 - [x] commit-0
 
+
+
+----------------------------------------------------------------------------------------------------
 ### Initialize Project
 ```s
 $ npm i
@@ -48,6 +51,9 @@ $ npm run seed #Run again to re-initialize a DB
 $ npm start
 ```
 
+
+
+----------------------------------------------------------------------------------------------------
 ### Setup `Sequelize`
 1. Install
    ```s
@@ -158,6 +164,7 @@ module.exports = (sequelize) => {
 
 
 
+----------------------------------------------------------------------------------------------------
 ### Define Associations
 ```javascript
 
@@ -165,11 +172,7 @@ module.exports = (sequelize) => {
 
 
 
-
-
-
-
----
+----------------------------------------------------------------------------------------------------
 1. Define Models
    ```javascript
    import { Sequelize, DataTypes } from 'sequelize';

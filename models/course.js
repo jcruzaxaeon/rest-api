@@ -8,7 +8,6 @@ models/course.js
 
 const { Model, DataTypes } = require('sequelize');
 
-
 module.exports = (sequelize) => {
    class Course extends Model { };
 

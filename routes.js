@@ -36,7 +36,6 @@ router.get('/users', authenticateUser, asyncTryBox(async (req, res) => {
       emailAddress: user.emailAddress,
    };
    res.json(data);
-   // console.log(data);
 }));
 
 // ## POST, 201 - Created, api/users
@@ -59,8 +58,6 @@ router.post('/users', asyncTryBox(async (req, res) => {
    }
 
    req.body.password = bcrypt.hashSync(user.password, 10);
-
-   // [!TODO] Password validation here? & on DB?
 
    await User.create(req.body);
    res.location('/').status(201).send(); // .json({ 'msg': 'User account created' });
@@ -86,7 +83,6 @@ router.get('/courses', asyncTryBox(async (req, res) => {
 router.get('/courses/:id', asyncTryBox(async (req, res) => {
    const id = req.params.id;
    const course = await Course.findByPk(id, {
-      // attributes: ['title', 'description', 'estimatedTime', 'materialsNeeded'],
       include: [{
          model: User,
          as: 'student',
@@ -94,7 +90,7 @@ router.get('/courses/:id', asyncTryBox(async (req, res) => {
       },],
    });
 
-   res.json(course); // .json({ 'msg': 'User account created' });
+   res.json(course);
 }));
 
 // ## POST, 201 - Created, api/courses
@@ -115,15 +111,6 @@ router.post('/courses', authenticateUser, asyncTryBox(async (req, res) => {
    }
 
    const entry = await Course.create(course);
-   // const entry = await Course.findOne({
-   //    where: {
-   //       title: req.body.title,
-   //       description: req.body.description,
-   //    },
-   // });
-   // console.log('\n', entry.id, '\n');
-
-   // await User.create(req.body);
 
    res.location(`/courses/${entry.id}`).status(201).send();
 }));
@@ -132,7 +119,7 @@ router.post('/courses', authenticateUser, asyncTryBox(async (req, res) => {
 // - PUT, 204 - Updated, 
 // - Update an existing course
 router.put('/courses/:id', authenticateUser, asyncTryBox(async (req, res) => {
-   let course = req.body; //await Course.findByPk(req.params.id);
+   let course = req.body;
    const user = req.currentUser.dataValues;
 
    // Validations
@@ -172,16 +159,6 @@ router.delete('/courses/:id', authenticateUser, asyncTryBox(async (req, res) => 
    // Validations
    const errMsgs = [];
    const report = new Report('', errMsgs);
-
-   // await Course.destroy({ where: { id: req.params.id } })
-   //    .then(count => {
-   //       if(count===0) errMsgs.push('Course ID not found');
-   //    });
-   // if (errMsgs.length > 0) {
-   //    report.message = 'Invalid course ID';
-   //    report.status = 400;
-   //    throw report;
-   // }
 
    const course = await Course.findByPk(req.params.id);
    if (!course) errMsgs.push('Course ID Not Found.');
